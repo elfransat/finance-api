@@ -2,4 +2,4 @@
 
 right now the application flow is like so.
 
-![Application Flow](/assets/application_flow.png)
+![Application Flow](/assets/application_flow.svg)
