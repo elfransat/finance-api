@@ -10,3 +10,4 @@ class Applicant(BaseModel):
     postcode: int = Field(..., description='5-digit Finnish postcode')
     phone_number: int = Field(..., description='10-digit Finnish phone number')
     income: int = Field(..., description='Income from the last 12 months')
+    ssn: str = Field(..., description = 'SSN in the format DDMMYY-CZZZQ') # C is the century marker, ZZZ is the individual number and Q is the control character.
