@@ -1,5 +1,6 @@
 from pydantic import BaseModel, Field
 from .applicant import Applicant
+from typing import Optional
 from ..enums import Status
 
 class ApplicationInput(BaseModel):
@@ -10,3 +11,6 @@ class ApplicationInput(BaseModel):
 
 class Application(ApplicationInput):
     status: Status = Field(...)
+    rejection: Optional[str] = Field(default=None)
+    loan_offer: Optional[int] = Field(default=0)
+

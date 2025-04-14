@@ -1,19 +1,21 @@
 from enum import Enum, IntEnum
 
+MAX_BID = 50000
+
 class Status(str, Enum):
     RECIEVED = 'RECIEVED'
     PROCESSING = 'PROCESSING'
     BID = 'BID'
-    DECLINED = 'DECLINED'
     USER_ACCEPTED = 'USER_ACCEPTED'
     USER_DECLINED = 'USER_DECLINED'
     EXPIRED = 'EXPIRED'
     ERROR = 'ERROR'
+    REJECTED = 'REJECTED'
 
 class EmploymentStatus(str, Enum):
     UNEMPLOYED = 'UNEMPLOYED'
-    SELFEMPLOYED = 'SELF_EMPLOYED'
-    EMPLOYEE = 'EMPLOYEE'
+    SELF_EMPLOYED = 'SELF_EMPLOYED'
+    EMPLOYED = 'EMPLOYED'
 
 class LoanSpecification(Enum): # specifications used to make bidding decision
     loan_interest = '50%'
