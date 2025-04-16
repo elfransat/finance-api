@@ -1,4 +1,4 @@
-from app.models.application import Application, ApplicationInput
+from app.db.models import Application
 from ...enums import EmploymentStatus, MAX_BID, Status
 
 

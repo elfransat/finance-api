@@ -1,13 +1,16 @@
-from ..applicant.applicant_validator import security_number_validator
-from ...models.application import ApplicationInput, Application
-from ...enums import Status
 import validators
-from ..bidding import bidding_service 
+from app.enums import Status
+from app.services.bidding import bidding_service 
+from app.db.models import Application, Applicant
+from app.db.database import update_application
 
-async def handle_application(application: ApplicationInput):
+async def handle_application(application: Application):
 
-    #first map ApplicatiponInput onto Application
-    application = Application(**application.model_dump(), status=Status.PROCESSING)
+    ##TODO: retrieve applicant also if needed
+
+    data = application.model_dump()
+    data["status"] = Status.PROCESSING
+    application = Application(**data)
 
     # updated status to processing TODO: update to DB
     application.status = Status.PROCESSING
@@ -16,6 +19,7 @@ async def handle_application(application: ApplicationInput):
     def reject(reason: str): #current implementation only gives one rejection reason
         application.status = Status.REJECTED
         application.rejection = reason
+        update_application(application.id, application)
         return application
     
     # Check all rejection conditions
