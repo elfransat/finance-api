@@ -16,15 +16,12 @@ async def create_application(input_data: CompleteApplicationInput):
     application = Application(
         **input_data.application.model_dump(),
         applicant_id=applicant.id,
-        status=Status.RECIEVED
+        status=Status.RECEIVED
         )
     
     save_application(application)
 
-    #Process application using application and applicant
-    processed_application = await handle_application(application)
-
-    return processed_application
+    return await handle_application(application)
 
 @router.get('/application/{application_id}', response_model=Application)
 async def retrieve_application(application_id: str):

@@ -51,7 +51,7 @@ def update_status(application_id: int, new_status: Status):
         application = session.get(Application, application_id)
         if not application:
             raise HTTPException(status_code=404, detail="Application not found")
-
+        
         application.status = new_status
         session.add(application)
         session.commit()

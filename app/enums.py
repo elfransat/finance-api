@@ -3,7 +3,7 @@ from enum import Enum, IntEnum
 MAX_BID = 50000
 
 class Status(str, Enum):
-    RECIEVED = 'RECIEVED'
+    RECEIVED = 'RECEIVED'
     PROCESSING = 'PROCESSING'
     BID = 'BID'
     USER_ACCEPTED = 'USER_ACCEPTED'
