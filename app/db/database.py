@@ -3,8 +3,8 @@ from dotenv import load_dotenv
 from fastapi import HTTPException
 from app.db.models import Applicant, Application
 import os
+from app.enums import Status
 
-# Create the SQLite database engine
 load_dotenv()
 DB_USER = os.getenv('DB_USER')
 DB_PASSWORD = os.getenv('DB_PASSWORD')
@@ -45,6 +45,26 @@ def update_application(application_id: int, application_data: Application):
         session.commit()
         session.refresh(application)
         return application
+    
+def update_status(application_id: int, new_status: Status):
+    with Session(engine) as session:
+        application = session.get(Application, application_id)
+        if not application:
+            raise HTTPException(status_code=404, detail="Application not found")
+
+        application.status = new_status
+        session.add(application)
+        session.commit()
+        session.refresh(application)
+        return application
+    
+def get_application(applicant_id: int):
+    with Session(engine) as session:
+        application = session.get(Application, applicant_id)
+        if not application:
+            raise HTTPException(status_code=404, detail="Application not found")
+        return application
+
 
 #### applicant operations ####
 
@@ -55,10 +75,9 @@ def save_applicant(applicant: Applicant):
         session.refresh(applicant)
         return applicant
 
-
-def get_application(applicant_id: int):
+def get_applicant(applicant_id: int):
     with Session(engine) as session:
-        application = session.get(Application, applicant_id)
-        if not application:
-            raise HTTPException(status_code=404, detail="Application not found")
-        return application
+        applicant = session.get(Applicant, applicant_id)
+        if not applicant:
+            raise HTTPException(status_code=404, detail="Applicant not found")
+        return applicant

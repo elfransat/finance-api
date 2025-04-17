@@ -12,7 +12,6 @@ async def create_application(input_data: CompleteApplicationInput):
     # create and save the applicant
     applicant = save_applicant(Applicant(**input_data.applicant.model_dump()))
 
-
     # create and save the application using applicant ID
     application = Application(
         **input_data.application.model_dump(),
