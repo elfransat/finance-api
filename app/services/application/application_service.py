@@ -7,7 +7,6 @@ from app.services.application.application_validator import validate_application
 from typing import List
 
 def handle_application(application: Application):
-    # Get applicant data
     applicant = get_applicant(application.applicant_id)
     
     # Update application status to PROCESSING

@@ -1,4 +1,4 @@
-# Loan Application System
+# Finance API Built with FastAPI
 
 A FastAPI application for processing loan applications, validating applicant information, and generating loan offers.
 
@@ -43,8 +43,8 @@ app/
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/yourusername/loan-application-system.git
-cd loan-application-system
+git clone https://github.com/yourusername/finance-api.git
+cd finance-api
 ```
 
 2. Create a virtual environment:
